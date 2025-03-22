@@ -1,0 +1,3 @@
+lsof -i :8090
+lsof -i :8090 | grep LISTEN
+pkill -f "node"
