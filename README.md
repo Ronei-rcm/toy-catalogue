@@ -25,7 +25,7 @@ Sistema de catálogo de brinquedos desenvolvido com Next.js 14, Prisma, Tailwind
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/toy-catalogue.git
+git clone https://github.com/ronei-rcm/toy-catalogue.git
 cd toy-catalogue
 ```
 
@@ -148,7 +148,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👥 Autores
 
-- Seu Nome - [@seu-usuario](https://github.com/seu-usuario)
+- Ronei RCM - [@ronei-rcm](https://github.com/ronei-rcm)
 
 ## 🙏 Agradecimentos
 
