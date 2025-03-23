@@ -10,14 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
-  id        String    @id @default(cuid())
-  name      String
-  email     String    @unique
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
   password  String
-  role      Role      @default(USER)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   addresses Address[]
   orders    Order[]
   reviews   Review[]
@@ -26,45 +31,47 @@ model User {
 model Category {
   id          String    @id @default(cuid())
   name        String
+  description String
+  imageUrl    String
   slug        String    @unique
-  description String?
-  imageUrl    String?
-  products    Product[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  products    Product[]
 }
 
 model Brand {
   id          String    @id @default(cuid())
   name        String
-  slug        String    @unique
   description String?
-  logoUrl     String?
-  website     String?
-  products    Product[]
+  imageUrl    String?
+  slug        String    @unique
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  products    Product[]
 }
 
 model Product {
-  id            String     @id @default(cuid())
-  name          String
-  slug          String     @unique
-  description   String?
-  price         Float
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  stock       Int      @default(0)
+  imageUrl    String?
+  slug        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  brandId     String?
+  brand       Brand?   @relation(fields: [brandId], references: [id])
   originalPrice Float?
-  stock         Int        @default(0)
   rating        Float?
-  imageUrl      String?
   images        String[]
-  category      Category   @relation(fields: [categoryId], references: [id])
-  categoryId    String
-  brand         Brand?     @relation(fields: [brandId], references: [id])
-  brandId       String?
   orderItems    OrderItem[]
   reviews       Review[]
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+
+  @@index([categoryId])
+  @@index([brandId])
 }
 
 model Order {
@@ -119,11 +126,6 @@ model Review {
   comment   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-enum Role {
-  USER
-  ADMIN
 }
 
 enum OrderStatus {

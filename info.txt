@@ -1,0 +1,193 @@
+# Toy Catalogue - Sistema de Catálogo de Brinquedos
+
+## Descrição do Projeto
+Sistema de catálogo de brinquedos desenvolvido com Next.js 14, oferecendo uma plataforma moderna para exibição e gerenciamento de produtos, categorias e marcas de brinquedos.
+
+## Estrutura de Diretórios
+```
+toy-catalogue/
+├── src/
+│   ├── app/
+│   │   ├── admin/
+│   │   │   └── page.tsx
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   ├── ui/
+│   │   │   ├── card.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── input.tsx
+│   │   │   └── skeleton.tsx
+│   │   ├── product-card.tsx
+│   │   ├── category-card.tsx
+│   │   └── brand-card.tsx
+│   ├── contexts/
+│   │   └── auth-context.tsx
+│   ├── lib/
+│   │   ├── prisma.ts
+│   │   └── utils.ts
+│   └── types/
+│       └── next-auth.d.ts
+├── prisma/
+│   └── schema.prisma
+├── public/
+│   └── placeholder.jpg
+└── docker/
+    └── docker-compose.yml
+```
+
+## Tecnologias Utilizadas
+- Next.js 14
+- TypeScript
+- Prisma ORM
+- PostgreSQL
+- TailwindCSS
+- Shadcn/UI
+- NextAuth.js
+- Docker
+
+## Dependências Principais
+```json
+{
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "next": "14.1.0",
+    "next-auth": "^4.24.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.1",
+    "shadcn-ui": "^0.9.5",
+    "sonner": "^1.4.0"
+  }
+}
+```
+
+## Configuração do Docker
+```yaml
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: toy_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+## Banco de Dados
+- **Sistema**: PostgreSQL 14
+- **Nome do Banco**: toy_db
+- **Usuário**: postgres
+- **Senha**: postgres
+- **Porta**: 5432
+
+## Modelos do Prisma
+1. **User**
+   - Campos: id, name, email, password, role
+   - Roles: USER, ADMIN
+
+2. **Product**
+   - Campos: id, name, slug, description, price, originalPrice, stock, rating, imageUrl, images
+
+3. **Category**
+   - Campos: id, name, slug, description, imageUrl
+
+4. **Brand**
+   - Campos: id, name, slug, description, logoUrl, website
+
+## Usuários Padrão
+```json
+{
+  "admin": {
+    "email": "admin@toycatalogue.com",
+    "password": "admin123",
+    "role": "ADMIN"
+  },
+  "user": {
+    "email": "user@toycatalogue.com",
+    "password": "user123",
+    "role": "USER"
+  }
+}
+```
+
+## Funcionalidades Principais
+1. **Área Pública**
+   - Listagem de produtos
+   - Visualização de categorias
+   - Exibição de marcas
+   - Sistema de busca
+   - Filtros por categoria e marca
+
+2. **Área Administrativa**
+   - Gestão de produtos
+   - Gestão de categorias
+   - Gestão de marcas
+   - Gestão de usuários
+   - Relatórios básicos
+
+## Rotas da Aplicação
+- `/` - Página inicial
+- `/produtos` - Listagem de produtos
+- `/produtos/[slug]` - Detalhes do produto
+- `/categorias` - Listagem de categorias
+- `/categorias/[slug]` - Produtos por categoria
+- `/marcas` - Listagem de marcas
+- `/marcas/[slug]` - Produtos por marca
+- `/admin` - Painel administrativo
+- `/login` - Página de login
+
+## Variáveis de Ambiente (.env)
+```
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/toy_db"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="seu-segredo-aqui"
+PORT=8090
+NODE_ENV=development
+```
+
+## Scripts Disponíveis
+```json
+{
+  "scripts": {
+    "dev": "next dev -p 8060",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  }
+}
+```
+
+## Instruções de Instalação
+1. Clone o repositório
+2. Instale as dependências: `npm install`
+3. Inicie o container Docker: `docker-compose up -d`
+4. Execute as migrações: `npx prisma migrate dev`
+5. Inicie o servidor: `npm run dev`
+
+## Portas Utilizadas
+- Frontend: 8060
+- Banco de Dados: 5432
+- Prisma Studio: 5555
+
+## Observações
+- Utiliza sistema de cache do Next.js
+- Implementa autenticação com NextAuth.js
+- Usa Tailwind para estilização
+- Componentes UI do shadcn/ui
+- Sistema de notificações com Sonner
+- Imagens otimizadas com Next/Image 

@@ -5,9 +5,12 @@
   "scripts": {
     "dev": "next dev -p 8060",
     "build": "next build",
-    "start": "next start -p 8060",
+    "start": "next start",
     "lint": "next lint",
-    "seed": "ts-node prisma/seed.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "seed": "ts-node src/scripts/seed.ts",
     "create-admin": "ts-node src/scripts/create-admin.ts"
   },
   "dependencies": {
@@ -20,7 +23,6 @@
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tabs": "^1.1.3",
     "@radix-ui/react-toast": "^1.2.6",
-    "@types/bcryptjs": "^2.4.6",
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -29,10 +31,12 @@
     "next-auth": "^4.24.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sonner": "^2.0.1",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20.17.25",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
