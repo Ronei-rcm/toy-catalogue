@@ -1,6 +1,67 @@
-# Catálogo de Brinquedos
+# Toy Catalogue
 
-Sistema de catálogo de brinquedos desenvolvido com Next.js 14, Prisma, Tailwind CSS e Radix UI.
+Sistema de catálogo de brinquedos desenvolvido com Next.js, Prisma e PostgreSQL.
+
+## Credenciais de Acesso
+
+### Administrador
+- Email: admin@toycatalogue.com
+- Senha: admin123
+
+### Cliente
+- Email: cliente@toycatalogue.com
+- Senha: cliente123
+
+## Funcionalidades
+
+### Área Administrativa
+- Gerenciamento de produtos
+- Gerenciamento de categorias
+- Gerenciamento de marcas
+- Gerenciamento de usuários
+- Configurações do sistema
+
+### Área do Cliente
+- Visualização do catálogo de produtos
+- Filtragem por categorias e marcas
+- Busca de produtos
+- Visualização detalhada dos produtos
+
+## Tecnologias Utilizadas
+
+- Next.js 14
+- Prisma ORM
+- PostgreSQL
+- NextAuth.js
+- Tailwind CSS
+- shadcn/ui
+
+## Como Executar
+
+1. Clone o repositório
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Configure as variáveis de ambiente no arquivo `.env`
+
+4. Execute as migrações do banco de dados:
+```bash
+npx prisma migrate dev
+```
+
+5. Execute o seed para criar o usuário administrador:
+```bash
+npm run seed
+```
+
+6. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+7. Acesse http://localhost:3000 no navegador
 
 ## 🚀 Tecnologias
 
@@ -127,32 +188,4 @@ npm test
 
 ## 📦 Scripts Disponíveis
 
-- `npm run dev`: Inicia o servidor de desenvolvimento
-- `npm run build`: Cria a build de produção
-- `npm start`: Inicia o servidor de produção
-- `npm run lint`: Executa o linter
-- `npm run test`: Executa os testes
-- `npx prisma studio`: Abre o Prisma Studio para gerenciar o banco de dados
-
-## 🤝 Contribuindo
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 👥 Autores
-
-- Ronei RCM - [@ronei-rcm](https://github.com/ronei-rcm)
-
-## 🙏 Agradecimentos
-
-- [Next.js](https://nextjs.org/)
-- [Prisma](https://www.prisma.io/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Radix UI](https://www.radix-ui.com/)
+- `
